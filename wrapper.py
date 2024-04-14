@@ -14,7 +14,7 @@ def make_api_call(latitude: float, longitude: float, api_key: str):
     try:
         response = requests.get(url)
         response.raise_for_status()
-        data = response.json()
+        data= response.json()
         return data
     except requests.exceptions.RequestException as e:
         print(f"Error fetching data: {e}")
