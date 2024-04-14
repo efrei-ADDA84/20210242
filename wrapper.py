@@ -33,6 +33,6 @@ def get_weather(lat: float, lon: float):
     api_key = os.getenv("API_KEY")
     if not api_key:
         raise HTTPException(status_code=500, detail="no api key configured")
-    data = make_api_call(lat, lon, api_key)
+    data= make_api_call(lat, lon, api_key)
     weather = extract_weather(data)
     return {"latitude": lat, "longitude": lon, "weather": weather}
