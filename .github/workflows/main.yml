@@ -26,7 +26,7 @@ jobs:
           push: true
           tags: meteocheck:1.0.0
       - name: Build Docker image
-        run: docker build -t meteocheck:1.0.0:latest .
+        run: docker build -t meteocheck:latest .
 
       - name: Push Docker image
         run: docker push angele745/meteocheck:latest
