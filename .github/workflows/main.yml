@@ -24,7 +24,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: meteocheck:latest
+          tags: angele745/meteocheck:latest
       - name: Build Docker image
         run: docker build -t meteocheck:latest .
 
