@@ -24,38 +24,10 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: meteocheck:1.0.0
+          tags: angele745/meteocheck:latest
       - name: Build Docker image
-        run: docker build -t meteocheck:1.0.0:latest .
+        run: docker build -t meteocheck:latest .
 
       - name: Push Docker image
         run: docker push angele745/meteocheck:latest
 
-      - name: Login to Azure container registry
-        uses: docker/login-action@v3
-        with:
-          registry: ${{ secrets.REGISTRY_LOGIN_SERVER }}
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
-
-      - name: Build and push docker image to Azure container registry
-        uses: docker/build-push-action@v5
-        with:
-          push: true
-          tags: ${{ secrets.REGISTRY_LOGIN_SERVER }}/20210242v1
-
-      - name: Login via Azure CLI
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - name: Deploy to Azure container instance
-        uses: azure/aci-deploy@v1
-        with:
-          resource-group: ${{ secrets.RESOURCE_GROUP }}
-          dns-name-label: devops-20210242
-          image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/20210242:v1
-          registry-username: ${{ secrets.REGISTRY_USERNAME }}
-          registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-          name: 20210242
-          location: "france central"
