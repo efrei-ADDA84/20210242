@@ -9,7 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
       - name: Dockerfile
         uses: hadolint/hadolint-action@v3.1.0
         with:
@@ -26,6 +25,11 @@ jobs:
         with:
           push: true
           tags: meteocheck:1.0.0
+      - name: Build Docker image
+        run: docker build -t meteocheck:1.0.0:latest .
+
+      - name: Push Docker image
+        run: docker push angele745/meteocheck:latest
 
       - name: Login to Azure container registry
         uses: docker/login-action@v3

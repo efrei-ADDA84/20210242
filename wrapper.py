@@ -4,7 +4,6 @@ from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 
 load_dotenv()
-
 app= FastAPI()
 
 def make_api_call(latitude: float, longitude: float, api_key: str):
@@ -21,14 +20,15 @@ def make_api_call(latitude: float, longitude: float, api_key: str):
         return None
 
 def extract_weather(data):
-    try:
+    try:    
+  
         weather = data['weather'][0]['main']
         return weather
     except KeyError as err:
         raise HTTPException(status_code=404, detail="Weather data not found")
 
-
 @app.get("/") 
+
 def get_weather(lat: float, lon: float):
     api_key = os.getenv("API_KEY")
     if not api_key:
