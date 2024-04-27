@@ -19,9 +19,13 @@ docker run --network host -p 8081 --env API_KEY=**** angele745/meteocheck
 Pour ce TP, j'ai travaillé sur le déploiement d'une application sur Azure Container Instances en utilisant Azure Container Registry et en assurant que mon API soit appelée sur le bon port. Tout d'abord, j'ai ajouté quatre étapes supplémentaires à mon pipeline :
 
 Login vers l'ACR : J'ai configuré mon pipeline pour se connecter à Azure Container Registry en utilisant les informations d'identification appropriées.
+
 Build and push de l'image vers l'ACR : J'ai veillé à ce que mon image Docker soit correctement construite et poussée vers Azure Container Registry.
+
 Login vers l'Azure CLI : J'ai ajouté une étape pour me connecter à Azure CLI afin de pouvoir exécuter des commandes Azure dans mon pipeline.
+
 Déploiement vers une ACI : En utilisant Azure CLI, j'ai déployé mon conteneur à partir de l'image stockée dans Azure Container Registry vers Azure Container Instances. J'ai pris soin de spécifier le port correct lors du déploiement pour correspondre à celui exposé dans mon conteneur Docker.
+
 http://devops-20210242.francesouth.azurecontainer.io:8081/?lat=48.873756&lon=2.294946
 
 # TP 4
